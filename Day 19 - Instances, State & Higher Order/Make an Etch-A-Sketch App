@@ -38,4 +38,10 @@ screen.onkey(turn_left, "a")
 screen.onkey(turn_right, "d")
 screen.onkey(clear, "c")
 
+
+screen.onkey(key="W", fun=move_forwards)
+screen.onkey(key="S", fun=move_backwards)
+screen.onkey(key="A", fun=turn_left)
+screen.onkey(key="D", fun=turn_right)
+
 screen.exitonclick()
