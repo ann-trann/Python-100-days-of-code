@@ -66,3 +66,77 @@
 
 #Hint 14: Ask the user if they want to restart the game. If they answer yes, clear the console and start a new game of blackjack and show the logo from art.py.
 
+
+
+#######################################################################################################################################################
+
+import random
+
+
+def takecard():
+    cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+    card = random.choice(cards)
+    return card
+
+
+def play():
+    listAI = []
+    listHM = []
+    for i in range(2):
+        listAI.append(takecard())
+        listHM.append(takecard())
+
+    sum1 = 0
+    sum2 = 0
+    for i in listAI:
+        sum1 += i
+    for i in listHM:
+        sum2 += i
+    if sum1 == sum2 == 21:
+        print("draw")
+        return 0
+    elif sum1 == 21:
+        print("Lose, computer is blackjack")
+    elif sum2 == 21:
+        print("Win, you are blackjack")
+
+    print(f"Your cards: {listHM}, your score: {sum2}")
+    print("Do you take another card?")
+    should_continue = input("Type 'y' or 'n': ")
+    while should_continue == 'y':
+        listHM.append(takecard())
+        sum2 += listHM[-1]
+        if sum2 > 21 and 11 in listHM:
+            listHM.remove(11)
+            listHM.append(1)
+            sum2 -= 10
+        if sum2 > 21:
+            print(f"Your cards: {listHM}, your score: {sum2}")
+            print("Lose!")
+            return
+        print(f"Your cards: {listHM}, your score: {sum2}")
+        print("Do you take another card?")
+        should_continue = input("Type 'y' or 'n': ")
+
+    while sum1 < 17:
+        listAI.append(takecard())
+        sum1 += listAI[-1]
+
+        if sum1 > 21 and 11 in listAI:
+            listAI.remove(11)
+            listAI.append(1)
+            sum2 -= 10
+
+    print(f"Computer cards: {listAI}, computer score: {sum1}")
+
+    if sum1 > 21:
+        print("Draw!")
+    elif sum1 > 21:
+        print("Win!")
+    else:
+        if sum1 > sum2: print("Lose!")
+        elif sum1 == sum2: print("Draw!")
+        else: print("Win!")
+
+
+play()
