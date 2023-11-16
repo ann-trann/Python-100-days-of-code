@@ -1,5 +1,0 @@
-up_down = None
-if difference > 0:
-    up_down = "🔺"
-else:
-    up_down = "🔻"
